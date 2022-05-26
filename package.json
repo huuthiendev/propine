@@ -9,6 +9,7 @@
   "author": "Thien Huynh",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "csv-parser": "^3.0.0",
     "moment": "^2.29.3",
     "yargs": "^17.5.1"
