@@ -1,5 +1,6 @@
 const fs = require('fs');
 const csv = require('csv-parser');
+require('dotenv').config();
 
 const { argv, SCRIPT_NAME } = require('./cli-command');
 const { getExchangeRates } = require('./services/exchange-rates');
@@ -42,14 +43,15 @@ function getPorfolio(argv) {
             }
 
             for (let index = 0; index < Object.keys(tokenPorfolios).length; index++) {
-                const amount = tokenPorfolios[index];
-                const price = await getExchangeRates(Object.keys(tokenPorfolios)[index]);
-                tokenPorfolios[index] = amount * price;
+                const token = Object.keys(tokenPorfolios)[index];
+                const amount = tokenPorfolios[token];
+                const price = await getExchangeRates(token);
+                tokenPorfolios[token] = price ? amount * price : amount;
             }
             console.log('Token portfolio in USD: ', tokenPorfolios);
         })
         .on('error', function (err) {
-            console.log('ERROR: ', err);
+            console.log('[ERROR] getPorfolio: ', err);
         });
 }
 

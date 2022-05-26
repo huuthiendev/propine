@@ -1,5 +1,4 @@
 const axios = require('axios');
-const API_KEY = '38e9357f76ef54ff59cbd3217468aaf9498cc718680f77f8bcbc8dad253fd7d8';
 
 async function getExchangeRates(token) {
     try {
@@ -10,7 +9,7 @@ async function getExchangeRates(token) {
         var response = await axios.get(
             'https://min-api.cryptocompare.com/data/price',
             { params: payload },
-            { headers: { Authorization: `Apikey ${API_KEY}` } }
+            { headers: { Authorization: `Apikey ${process.env.API_KEY}` } }
         );
         return response.data.USD;
     }
