@@ -2,6 +2,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 
 const { argv, SCRIPT_NAME } = require('./cli-command');
+const { getExchangeRates } = require('./services/exchange-rates');
 const TRANSACTION_FILE = 'transactions.csv';
 
 function getPorfolio(argv) {
@@ -41,7 +42,9 @@ function getPorfolio(argv) {
             }
 
             for (let index = 0; index < Object.keys(tokenPorfolios).length; index++) {
-                const tokenPorfolio = tokenPorfolios[index];
+                const amount = tokenPorfolios[index];
+                const price = await getExchangeRates(Object.keys(tokenPorfolios)[index]);
+                tokenPorfolios[index] = amount * price;
             }
             console.log('Token portfolio in USD: ', tokenPorfolios);
         })
