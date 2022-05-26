@@ -2,11 +2,12 @@
 
 ## How to run the program ?
 #### 1. Add transactions.csv file in the root folder
-#### 2. Install all dependencies
+#### 2. Update ENV file
+#### 3. Install all dependencies
 ```bash
 npm install
 ```
-#### 3. Start the program by command line
+#### 4. Start the program by command line
 ```bash
 node src/main.js portfolio
 ```
