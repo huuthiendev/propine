@@ -8,7 +8,7 @@ const TRANSACTION_FILE = 'transactions.csv';
 
 function getPorfolio(argv) {
     console.log('Calculating the portfolio ...')
-    var tokenPorfolios = {};
+    const tokenPorfolios = {};
 
     fs.createReadStream(TRANSACTION_FILE)
         .pipe(csv())
